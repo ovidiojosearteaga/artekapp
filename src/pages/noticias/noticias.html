@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Noticias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="showLoading" class="loading-box">
+    <img src="assets/imgs/loading.gif" alt="">
+    <p>Cargando noticias...</p>
+  </div>
+
+  <ion-slides pager *ngIf="showNotices" class="box-slider">
+    <ion-slide (click)="viewNotice(noticeSlider)" *ngFor="let noticeSlider of noticesSlider">
+      <h2>{{ noticeSlider.title.rendered }}</h2>
+      <img src="{{ noticeSlider.featureMediaUrl }}" class="thumbnail-notice" >
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list *ngIf="showNotices" class="list-box">
+    <ion-item (click)="viewNotice(notice)" class="item-notice" ion-item *ngFor="let notice of notices" >
+      <h3 class="title-notice">{{ notice.title.rendered }}</h3>
+      <img src="{{ notice.featureMediaUrl }}" class="thumbnail-notice" >
+    </ion-item>  
+  </ion-list>
+</ion-content>

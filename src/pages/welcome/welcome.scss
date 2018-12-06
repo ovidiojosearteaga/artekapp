@@ -1,0 +1,23 @@
+page-welcome {
+	.list-item {
+		background: none;
+	}
+
+	.go-to-signup-page {
+		color: color($colors, primary);
+	}
+
+	.loading {
+		width: 50px;
+		margin: auto;
+		display: block;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	.lost-password {
+		color: color($colors, primary);
+	}
+}

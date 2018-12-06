@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis Citas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="showPage">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="header">
+          <img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >
+          <h3>{{userDataProvider.getName()}}</h3>
+          <p class="is-client">{{userDataProvider.getStatus()}} Artek</p>
+      </ion-col>   
+    </ion-row>
+
+    <ion-row *ngFor="let cita of citas">
+      <ion-col>
+        <ion-card >
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12 class="cite-data">
+                <span class="cite-icon">
+                  <img src="assets/imgs/calendar.png" width="36">
+                </span>
+                <p>
+                  <span class="cite-type">{{cita.title}}</span>
+                  <span class="name-doctor">Doctor: {{cita.doctor}}</span>
+                </p>
+              </ion-col>
+              <ion-col col-12>
+                <p class="cite-date">{{cita.fecha}} - <span class="cite-hour">{{cita.hora}}</span></p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="cita.estado == 'confirmada'">
+              <ion-col>
+                <p class="text-estado">
+                  <ion-icon name="checkmark-circle" class="icon-estado"></ion-icon>
+                  <span class="status-action-text">Confirmada</span>
+                </p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="cita.estado == 'reprogramada'">
+              <ion-col>
+                <p class="text-estado-reprogramada">
+                  <ion-icon name="alarm" class="icon-estado-reprogramada"></ion-icon>
+                  <span class="status-action-text">Reprogramada</span>
+                </p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="cita.estado == 'cancelada'">
+              <ion-col>
+                <p class="text-estado-cancelada">
+                  <ion-icon name="close-circle" class="icon-estado-cancelada"></ion-icon>
+                  <span class="status-action-text">Cancelada</span>
+                </p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="cita.estado == 'por-confirmar'">
+              <ion-col col-12 col-sm-4>
+                <button ion-button block (click)="confirmarCita(cita)">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <span class="status-action-text">Confirmar</span>
+                </button>
+              </ion-col>
+              <ion-col col-12 col-sm-4>
+                <button ion-button block (click)="reprogramarCita(cita)">
+                    <ion-icon name="alarm"></ion-icon>
+                    <span class="status-action-text">Reprogramar</span>
+                </button>
+              </ion-col>
+              <ion-col col-12 col-sm-4>
+                <button ion-button block (click)="cancelarCita(cita)">
+                    <ion-icon name="close-circle"></ion-icon>
+                  <span class="status-action-text">Cancelar</span>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

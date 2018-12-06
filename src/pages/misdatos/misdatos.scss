@@ -1,0 +1,24 @@
+page-misdatos {
+  .header {
+    img.user-thumbnail {
+      width: 80px;
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+    } 
+
+    h3 {
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: 300;
+      color: color($colors, light);
+    } 
+
+    p.is-client {
+      text-align: center;
+      font-size: .9em;
+      font-weight: 300;
+      color: color($colors, light);
+    }
+  }
+}

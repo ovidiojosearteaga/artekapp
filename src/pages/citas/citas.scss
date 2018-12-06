@@ -1,0 +1,87 @@
+page-citas {
+    .header {
+        img.user-thumbnail {
+          width: 80px;
+          border-radius: 50%;
+          display: block;
+          margin: auto;
+        } 
+    
+        h3 {
+          text-align: center;
+          font-size: 1.4em;
+          font-weight: 300;
+        } 
+    
+        p.is-client {
+          text-align: center;
+          font-size: .9em;
+          font-weight: 300;
+        }
+    }
+
+    .status-action-text {
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    .cite-data {
+      display: flex;
+
+      .cite-icon {
+        display: inline-flex;
+        align-items: center;
+
+        img {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      p {
+        padding: 0 0 0 10px;
+
+        span {
+          display: block;
+          color: color($colors, light);
+        }
+
+        .cite-type {
+          font-weight: 600;
+          text-transform: uppercase;
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    .cite-date {
+      color: color($colors, light); 
+      font-size: 1.1em; 
+      font-weight: 500;
+      margin-left: 38px;
+    }
+
+    .text-estado {
+      color: color($colors, light);
+
+      .icon-estado {
+        color: green;
+      }
+    }
+
+    .text-estado-cancelada {
+      color: color($colors, light);
+
+      .icon-estado-cancelada {
+        color: color($colors, primary);
+      }
+    }
+
+    .text-estado-reprogramada {
+      color: color($colors, light);
+
+      .icon-estado-reprogramada {
+        color: yellow;
+      }
+    }
+}

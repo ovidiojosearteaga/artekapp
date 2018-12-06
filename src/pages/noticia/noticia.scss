@@ -1,0 +1,15 @@
+page-noticia {
+  .title-notice {
+    color: white;
+  }
+
+  .content-notice {
+    p {
+      color: white;
+    }
+
+    a {
+      color: color($colors, primary)
+    }
+  }
+}

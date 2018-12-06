@@ -1,0 +1,584 @@
+[
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09Descuentos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T02Etiqueta",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12PagosFacturasTto",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T13Actividades",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09TratamientosEsp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10Ortodoncia",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T04Horario",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Control",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T15Novedades",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T14Productos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Control_Tmp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "MODULOS",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "REGISTRO",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05ControlLab",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05ControlLab_Tmp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T21Asesores",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "PERMISOS",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05DescargueInv_Tmp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T11Fotografias",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10Presupuesto",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T18OrtoATM",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T17Egresos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T26ResiduosOtros",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T26Residuos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T24Otros",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T13Equivalencias",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T19Especialistas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T07Observaciones",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09TratamientosRiesg",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09TratamientosEquiv",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T01Otros",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09Tratamientos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Riesgos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Riesgos_Tmp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T17EgresosCuentas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T28Recoleccion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T29Trasporte",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09TratamientosAud",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "EMPRESA",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T03Odontologos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05DescargueInv",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12PagosProductos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T14ProductosExistencias",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Satisfaccion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T03Otros",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T16Compañias",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "TEMPORAL",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T16Resolucion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10SuperificiesDientes",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Citas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T17EgresosExistencias",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T01Paciente",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T18OrtoCuotas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10PresupuestoDetalle",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T15Empleado",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10Odontograma",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Recetario",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05Recetario_Tmp",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05CitasMov",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05CitasHC",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T18Ortodoncia",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10Periodontograma",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T02Control",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "DATOSBASICOS",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12PagosNegociacion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T22Contactos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12PagosFacturas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05ControlLab_Seg",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "Actualizacion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12Pagos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T08Proveedores",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05CitasActividades",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T00PacienteCita",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "AUDITORIA",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T15Adicional",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T15Nomina",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T18OrtoConclusiones",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "USUARIOS",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T20EndodonciaDatos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05CitasFirmas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T15Logeo",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T20Endodoncia",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T08Laboratorios",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T01PacienteHuellas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T01Paciente_Compl",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T23Tareas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T25Equipo",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T25EquipoMan",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T12ConsecutivoDocFacturas",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T04AusenciasOdont",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "dtproperties",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T09TratamientosMat",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T04HorarioOdont",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T10OrtodonciaPaciente",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T05CitasPos",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T27Esterilizacion",
+    "TABLE_TYPE": "BASE TABLE"
+  },
+  {
+    "TABLE_CATALOG": "GestionOdontologica",
+    "TABLE_SCHEMA": "dbo",
+    "TABLE_NAME": "T06Diagnosticos",
+    "TABLE_TYPE": "BASE TABLE"
+  }
+]

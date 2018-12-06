@@ -1,0 +1,76 @@
+page-puntos {
+  div.header {
+    img.user-thumbnail {
+      width: 80px;
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+    } 
+
+    h3 {
+      text-align: center;
+      font-size: 1.4em;
+      font-weight: 300;
+    } 
+
+    p.is-client {
+      text-align: center;
+      font-size: .9em;
+      font-weight: 300;
+    }
+  }
+  
+  .paquetes {
+    height: 170px;
+
+    img.image-paquete {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      top: 15px;
+      opacity: .3;
+    }
+
+    h2.title-paquete {
+      position: absolute;
+      z-index: 5;
+      top: 10px;
+      width: 100%;
+    }
+
+    p.description-paquete {
+      position: absolute;
+      z-index: 6;
+      top: 45px;
+      font-size: .8em;
+      text-align: center;
+      width: 100%;
+      font-weight: 300;
+    }
+  }
+
+  div.mis-puntos {
+    p {
+      width: 100%;
+      text-align: center;
+      font-weight: 300;
+
+      span.puntos {
+        background: color($colors, primary);
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-size: 2rem;
+        font-weight: 400;
+        display: block;
+        width: 75px;
+        margin: auto;
+        margin-top: 8px;  
+      }
+    }
+  }
+
+  .alert-error-title {
+    color: red;
+  }
+}

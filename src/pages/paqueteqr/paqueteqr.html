@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Artek</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <h3 class="title">Listo!</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="description">El paquete ha sido pagado, presenta es código QR para completar el proceso.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+        <ngx-qrcode [qrc-value]="qrCode"></ngx-qrcode>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

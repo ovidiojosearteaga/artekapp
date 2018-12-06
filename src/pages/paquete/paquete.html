@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Paquete</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content margin-top padding *ngIf="showPaqueteData">
+  <ion-card margin-top>
+    <button margin-top margin-bottom block ion-button (click)="pagarPaquete()">Pagar</button>
+    <img src="{{paqueteData.featureMediaUrl}}"/>
+    <ion-card-content>
+      <ion-card-title class="paquete-title">
+        {{paqueteData.title.rendered}}
+      </ion-card-title>
+      <div class="paquete-puntos" margin-bottom>
+        <p>Puntos <span class="puntos">{{paqueteData.value_points}}</span></p>
+      </div>
+      <div class="content" [innerHTML]="paqueteData.content.rendered">
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

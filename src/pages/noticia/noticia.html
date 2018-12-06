@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Noticia</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngIf="showNotice">
+    <img src="{{notice.featureMediaUrl}}"/>
+    <ion-card-content>
+      <ion-card-title class="title-notice">
+        {{notice.title.rendered}}
+      </ion-card-title>
+      <div class="content-notice" [innerHTML]="notice.content.rendered">
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

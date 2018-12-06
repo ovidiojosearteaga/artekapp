@@ -1,0 +1,43 @@
+<ion-header margin-bottom>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis datos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header class="header">
+      <img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >
+      <h3>{{userDataProvider.getName()}}</h3>
+      <p class="is-client">{{userDataProvider.getStatus()}} Artek</p>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item margin-bottom class="list-item">
+          <ion-label fixed>Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+        </ion-item>
+            
+        <ion-item margin-bottom class="list-item">
+          <ion-label fixed>Apellido</ion-label>
+          <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+        </ion-item>
+          
+        <ion-item margin-bottom class="list-item">
+          <ion-label fixed>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+              
+        <ion-item margin-bottom class="list-item">
+          <ion-label fixed>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+          
+        <button ion-button full margin-top>Actualizar</button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

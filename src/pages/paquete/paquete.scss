@@ -1,0 +1,36 @@
+page-paquete {
+  .paquete-title {
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+
+  .content {
+    p {
+      color: white;
+    }
+
+    a {
+      color: color($colors, primary)
+    }
+  }
+
+  div.paquete-puntos {
+    p {
+      width: 100%;
+      text-align: center;
+      font-weight: 300;
+
+      span.puntos {
+        background: color($colors, primary);
+        padding: 0px 5px;
+        border-radius: 4px;
+        font-size: 1.5rem;
+        font-weight: 400;
+        width: 75px;
+        margin: auto;
+        margin-top: 8px;  
+      }
+    }
+  }
+}

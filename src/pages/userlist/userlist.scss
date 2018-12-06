@@ -1,0 +1,32 @@
+page-userlist {
+  .user-item {
+    background: none;
+  }
+
+  .letter-divider {
+    background: color($colors, dark);
+    color: color($colors, light);
+  }
+
+  .paciente-email {
+    color: color($colors, artek-gray);
+  }
+
+  .user-points {
+    font-size: .9em;
+    color: color($colors, artek-gray);
+  }
+
+  .spinner-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+
+    ion-spinner * {
+      width: 36px;
+      height: 36px;
+      stroke: color($colors, primary);
+      fill: color($colors, dark);
+    }
+  }
+}

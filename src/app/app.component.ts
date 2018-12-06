@@ -1,10 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, LoadingController, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { CitasPage } from '../pages/citas/citas';
+import { ContactoPage } from '../pages/contacto/contacto';
+import { NoticiasPage } from '../pages/noticias/noticias';
+import { PuntosPage } from '../pages/puntos/puntos';
+import { WelcomePage } from '../pages/welcome/welcome';
+import { MisdatosPage } from '../pages/misdatos/misdatos'; 
+
+import { UserdataProvider } from '../providers/userdata/userdata';
+
+import { OneSignal } from '@ionic-native/onesignal';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,33 +21,92 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = WelcomePage;
 
-  pages: Array<{title: string, component: any}>;
+  loading: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  pages: Array<{title: string, component: any, icon: string}>;
+
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public userDataProvider: UserdataProvider,
+    private oneSignal: OneSignal) 
+  {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Mis Puntos', component: PuntosPage, icon: 'ios-create' },
+      { title: 'Mis Citas', component: CitasPage, icon: 'clipboard' },
+      { title: 'Noticias', component: NoticiasPage, icon: 'link' },
+      { title: 'Mis datos', component: MisdatosPage, icon: 'body' },
+      { title: 'Salir', component: 'salir', icon: 'log-out' },
     ];
 
+    this.loading = this.loadingCtrl.create({
+      content: 'Saliendo de Artek.'
+    });
+
+    //this.handlerNotifications();
+  }
+
+  private handlerNotifications(){
+    this.oneSignal.startInit('b94c5296-d9d9-4589-a89d-76fb3ee51c68', '823613585646');
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
+    this.oneSignal.handleNotificationOpened()
+    .subscribe(jsonData => {
+      let alert = this.alertCtrl.create({
+        title: jsonData.notification.payload.title,
+        subTitle: jsonData.notification.payload.body,
+        buttons: ['OK']
+      });
+      alert.present();
+      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    });
+    this.oneSignal.endInit();
+
+    this.oneSignal.getIds().then((id) => {
+      this.userDataProvider.setOneSignalId(id);
+    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.component === 'salir') {
+      this.salirArtek();
+    } else {
+      this.nav.setRoot(page.component);  
+    }
+  }
+
+  salirArtek()
+  {
+    const confirm = this.alertCtrl.create({
+      title: 'Salir',
+      message: '¿Deseas Salir de artek?',
+      buttons: [
+        {
+          text: 'No'
+        },
+        {
+          text: 'Sí',
+          handler: () => {
+            this.loading.present();
+            this.nav.setRoot(WelcomePage); 
+            this.loading.dismiss();
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 }

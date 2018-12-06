@@ -1,0 +1,49 @@
+page-noticias {
+    .loading-box {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: center;
+
+        p {
+            width: 100%;
+        }
+    }
+
+    .box-slider {
+        height: 30vh;
+
+        h2 {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+        }
+    }
+
+    .list-box {
+        margin-top: 15px;
+    }
+
+    .item-notice {
+        background: none;
+
+        .label {
+            display: flex;
+
+            h3.title-notice {
+                width: calc(100% - 60px);
+                white-space: pre-wrap;
+                font-size: 1.1em;
+            }
+    
+            img.thumbnail-notice {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}

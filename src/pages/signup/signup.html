@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Registro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+        <ion-col text-center>
+          <img src="assets/imgs/logo.png" alt="Logotipo Artek Odontología Láser" width="180">
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+          <ion-list>
+              <ion-item margin-bottom class="list-item">
+                <ion-label fixed>Nombre</ion-label>
+                <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+              </ion-item>
+            
+              <ion-item margin-bottom class="list-item">
+                <ion-label fixed>Apellido</ion-label>
+                <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+              </ion-item>
+          
+              <ion-item margin-bottom class="list-item">
+                <ion-label fixed>Cédula</ion-label>
+                <ion-input type="text" [(ngModel)]="username"></ion-input>
+              </ion-item>
+          
+              <ion-item margin-bottom class="list-item">
+                <ion-label fixed>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="email"></ion-input>
+              </ion-item>
+              
+              <ion-item margin-bottom class="list-item">
+                <ion-label fixed>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="password"></ion-input>
+              </ion-item>
+          
+              <button ion-button full margin-top (click)="signUp()">Registarme</button>
+            </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
+</ion-content>
