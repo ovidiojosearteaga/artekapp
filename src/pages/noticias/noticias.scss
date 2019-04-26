@@ -21,6 +21,7 @@ page-noticias {
             position: absolute;
             bottom: 15px;
             width: 100%;
+            text-shadow: 2px 2px 2px rgba(0,0,0,.5);
         }
     }
 
@@ -31,18 +32,37 @@ page-noticias {
     .item-notice {
         background: none;
 
-        .label {
+        .date-notice {
+            font-size: .7em;
+        }
+
+        .excerpt-box {
             display: flex;
+
+            div {
+                width: calc(100% - 60px);
+
+                p.link-more {
+                    display: none;
+                }
+            }
+        }
+
+        .label {
 
             h3.title-notice {
                 width: calc(100% - 60px);
                 white-space: pre-wrap;
                 font-size: 1.1em;
             }
+
+            p {
+                white-space: normal;
+            }
     
-            img.thumbnail-notice {
-                width: 60px;
-                height: 60px;
+            .box-thumbnail-notice {
+                width: 75px;
+                margin-left: 3px;
             }
         }
     }

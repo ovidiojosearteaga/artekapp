@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis hijos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let hijo of hijos">
+    <ion-card-content (click)="goToCitas(hijo.T01Cedula,hijo.wpId)">
+      <p class="hijo-data">{{hijo.T01Nombres}} {{hijo.T01Apellidos}}</p>
+      <p class="hijo-data hijo-cedula">{{hijo.T01Cedula}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

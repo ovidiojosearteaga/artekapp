@@ -16,21 +16,18 @@
         <img src="{{item.user_avatar}}">
       </ion-avatar>
       <h2>{{item.display_name}}</h2>
-      <p class="paciente-email">{{item.user_email}}</p>
-      <span item-end class="user-points">Pts: {{item.user_points}}</span>
+      <p class="paciente-cedula">{{item.cedula}}</p>
     </ion-item>
   </ion-list>
 
   <div *ngIf="showListAlphabetical" >
-    <ion-item-group *ngFor="let letter of userList.letterList" >
-      <ion-item-divider class="letter-divider">{{letter}}</ion-item-divider>
-      <ion-item *ngFor="let paciente of userList.pacientes[letter]" class="user-item" (click)="showPrompt(paciente)">
+    <ion-item-group>
+      <ion-item *ngFor="let paciente of pacientes" class="user-item" (click)="showPrompt(paciente)">
         <ion-avatar item-start>
           <img src="{{paciente.user_avatar}}">
         </ion-avatar>
         <h2>{{paciente.display_name}}</h2>
-        <p class="paciente-email">{{paciente.user_email}}</p>
-        <span item-end class="user-points">Pts: {{paciente.user_points}}</span>
+        <p class="paciente-cedula">{{paciente.cedula}}</p>
       </ion-item>
     </ion-item-group>
   </div>

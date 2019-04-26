@@ -10,33 +10,60 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header class="header">
-      <img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >
+      <img [src]="userThumbnail" *ngIf="userThumbnail" class="user-thumbnail" (click)="getImage()">
       <h3>{{userDataProvider.getName()}}</h3>
+      <p class="is-client">{{userDataProvider.getCedula()}}</p>
       <p class="is-client">{{userDataProvider.getStatus()}} Artek</p>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item margin-bottom class="list-item">
-          <ion-label fixed>Nombre</ion-label>
+          <ion-label stacked>Nombre</ion-label>
           <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+        </ion-item>
+
+        <ion-item margin-bottom class="list-item">
+          <ion-label stacked>Segundo nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="firstNameTwo"></ion-input>
         </ion-item>
             
         <ion-item margin-bottom class="list-item">
-          <ion-label fixed>Apellido</ion-label>
+          <ion-label stacked>Apellido</ion-label>
           <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+        </ion-item>
+
+        <ion-item margin-bottom class="list-item">
+          <ion-label stacked>Segundo apellido</ion-label>
+          <ion-input type="text" [(ngModel)]="lastNameTwo"></ion-input>
+        </ion-item>
+
+        <ion-item margin-bottom class="list-item">
+          <ion-label stacked>Fecha de nacimiento</ion-label>
+          <ion-datetime 
+            display-format="DD-MMM-YYYY HH:mm"
+            monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Oct, Sep, Nov, Dic"
+            max="{{maxDateTime}}"
+            [(ngModel)]="birthdate"
+          >
+          </ion-datetime>
         </ion-item>
           
         <ion-item margin-bottom class="list-item">
-          <ion-label fixed>Email</ion-label>
+          <ion-label stacked>Email</ion-label>
           <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
               
         <ion-item margin-bottom class="list-item">
-          <ion-label fixed>Password</ion-label>
+          <ion-label stacked>Password</ion-label>
           <ion-input type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
+
+        <ion-item margin-bottom class="list-item">
+          <ion-label stacked>Repetir password</ion-label>
+          <ion-input type="password" [(ngModel)]="rePassword"></ion-input>
+        </ion-item>
           
-        <button ion-button full margin-top>Actualizar</button>
+        <button ion-button full margin-top (click)="updateUserData()">Actualizar</button>
       </ion-list>
     </ion-card-content>
   </ion-card>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { StoragenoticeProvider } from '../../providers/storagenotice/storagenotice';
+import { HelpersProvider } from '../../providers/helpers/helpers';
 
 /**
  * Generated class for the NoticiaPage page.
@@ -16,6 +18,8 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class NoticiaPage {
 
+  loading:any;
+
   noticeId:number;
 
   notice:any = null;
@@ -24,14 +28,25 @@ export class NoticiaPage {
   
   featureImageData:any;
 
+  dateNotice:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public restProvider: RestProvider
+    public restProvider: RestProvider,
+    public loadingCtrl: LoadingController,
+    public storageNotice: StoragenoticeProvider,
+    public helpers: HelpersProvider
   ) 
   {
     this.noticeId = navParams.get('noticeId');
     this.getNoticeData(this.noticeId);
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Cargando noticia...'
+    });
+
+    this.loading.present();
   }
 
   ionViewDidLoad() {
@@ -41,20 +56,31 @@ export class NoticiaPage {
   getNoticeData(noticeId)
   {
     var that = this;
-    this.restProvider.getWordPressUniquePage(noticeId)
+    this.restProvider.getWordPressUniquePost(noticeId)
       .then(
         data => {
           that.notice = data;
-
+          console.log(data);
           this.notice.featureMediaUrl = "../assets/imgs/loading-image.gif";
           this.getWordPressMediaById(that.notice.featured_media);
+          this.dateFormat([this.notice]);
           this.showNotice = true;
+          this.loading.dismiss();
+          this.storageNotice.deleteIdNotice();
         })
       .catch(
         err => {
           console.log(err);
       }
     );
+  }
+
+  dateFormat(notices:any)
+  {
+    notices.forEach(notice => {
+      let fecha:string = notice.date;
+      notice.date_notice = this.helpers.dateFormat(fecha);
+    });
   }
 
   getWordPressMediaById(idMedia:number)

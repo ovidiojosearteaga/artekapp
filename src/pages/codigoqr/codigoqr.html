@@ -8,14 +8,17 @@
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-      <p class="text-information">Muestra este QR al paciente a quien quieres transferir tus puntos, para que los scane con la app de Artek.</p>
+      <p class="text-information">Muestra este QR para completar la transferencia de puntos.</p>
     </ion-card-content>
   </ion-card>
  
   <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
     <ion-card-content>
-      <p class="text-puntos">Puntos a transferir: {{ puntos }}</p>
+        <h3>Información de puntos a transferir:</h3>
+        <p class="text-puntos"><strong>Paciente:</strong> {{ userDisplayName }}</p>
+        <p class="text-puntos"><strong>Cédula:</strong> {{ userCedula }}</p>
+        <p class="text-puntos"><strong>Puntos:</strong> {{ puntos }}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

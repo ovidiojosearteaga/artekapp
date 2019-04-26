@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/home/brightgroup/docker/wptesting/sqlsrv/wp-content/plugins/artek-system"
+		}
+	],
+	"settings": {}
+}

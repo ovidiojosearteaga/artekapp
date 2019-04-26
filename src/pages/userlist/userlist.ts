@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { UserdataProvider } from '../../providers/userdata/userdata';
-import { UserlistProvider } from '../../providers/userlist/userlist';
 import { FormControl }  from '@angular/forms';
 import { AlertController } from 'ionic-angular';
+import { CodigoqrPage } from '../codigoqr/codigoqr';
+
+import { PersonaldataProvider } from '../../providers/personaldata/personaldata';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/map';
 
 /**
  * Generated class for the UserlistPage page.
@@ -26,30 +29,56 @@ export class UserlistPage {
   items: any;
   searching:boolean = false;
   showListAlphabetical:boolean = true;
-  userIdToAddPoints:number;
+  userToAddPoints:number;
   currentPointsofUser:number;
   loading:any;
   dataUser:any;
+  pacientes:any;
+  currentUser:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public restProvider: RestProvider,
-    public userList: UserlistProvider,
     public userDataProvider: UserdataProvider,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public personalData: PersonaldataProvider
   ) 
   {
-    console.log(this.items);
-
     this.loading = this.loadingCtrl.create({
       content: 'Transfiriendo puntos...'
     });
 
-    this.userList.getPacientes();
-
+    this.getPacientes();
     this.searchControl = new FormControl();
+  }
+
+  getPacientes()
+  {
+    let loading = this.loadingCtrl.create({
+      content: 'Cargando lista de usuarios...'
+    });
+
+    loading.present();
+
+    this.restProvider.getPacientes()
+      .then( data => {
+        this.pacientes = data;
+
+          this.pacientes.forEach(function(paciente) {
+            if (paciente.user_avatar == false)
+              paciente.user_avatar = "assets/imgs/user-default.jpg";
+          });
+
+        console.log(this.pacientes);
+        loading.dismiss();
+      
+      })
+      .catch(
+        err => {
+          console.log(err);  
+      });
   }
 
   ionViewDidLoad() {
@@ -72,7 +101,7 @@ export class UserlistPage {
 
   setFilteredItems()
   {
-    this.items = this.userList.filterItems(this.searchTerm);
+    this.items = this.filterItems(this.searchTerm);
   }
 
   showPrompt(userToSendPoints) 
@@ -112,13 +141,8 @@ export class UserlistPage {
                 'Los puntos a transferir no pueden ser menor o igual a 0'
                 );
             } else {
-              this.userIdToAddPoints = userToSendPoints.ID;
-              this.restPoints(this.userDataProvider.getUserId(),data.puntos);
-              /*
-              this.navCtrl.push(CodigoqrPage, {
-                puntos : data.puntos,
-              });  
-              */
+
+              this.createQRToSendPoints(userToSendPoints, data.puntos);
             }   
           }
         }
@@ -127,71 +151,30 @@ export class UserlistPage {
     prompt.present();
   }
 
-  addPoints(userId, points)
+  createQRToSendPoints(userToSendPoints:any, points:number)
   {
-    this.restProvider.getWordpressUserData(userId)
-    .then( data => { 
+    this.personalData.getPersonalData()
+      .then((data) => 
+      {
+        this.currentUser = data;
 
-      this.dataUser = data;
-      var newPoints = parseInt(this.dataUser.user_points) + parseInt(points);
-
-      var dataPoints = {
-        'user_points':newPoints, 
-        'user_id_origin':this.userDataProvider.getUserId(),
-        'points':points
-      };
-
-      this.restProvider.updateUserPoints(userId, dataPoints)
-      .then( data => {
+        console.log(this.currentUser);
         this.loading.dismiss();
-        this.loading = this.loadingCtrl.create({
-          content: 'Transfiriendo puntos...'
-        });
-        this.showMessageSuccess('Puntos transferidos.');
+        this.navCtrl.push(CodigoqrPage, {
+          puntos : points,
+          user_id: userToSendPoints.ID,
+          user_display_name: userToSendPoints.display_name,
+          user_cedula: userToSendPoints.cedula,
+          type: 'trasnfer_to_user',
+          user_id_origin: this.currentUser.id,
+          user_cedula_origin: this.currentUser.slug
+        });  
       })
-      .catch(err => {
-        console.log(err);  
-      });
-
-     })
-    .catch(err => {
-      console.log(err);  
-    });
-
-    //var data = {'user_points':points}
-    //this.restProvider.updateUserPoints(userId, data)
-  }
-
-  restPoints(userId, points)
-  {
-    this.loading.present();
-
-    var pointsUpdated = this.userDataProvider.getUserData().user_points - points;
-
-    var data = {'user_points':pointsUpdated};
-
-    this.restProvider.updateUserPoints(userId, data)
-      .then( data => {
-        this.userDataProvider.getUserData().user_points = pointsUpdated;
-        this.addPoints(this.userIdToAddPoints, points);
-      })
-      .catch(err => {
-        console.log(err);  
-    });
-  }
-
-  showMessageSuccess(message:string) 
-  {
-    const alert = this.alertCtrl.create({
-      title: 'Listo!',
-      subTitle: message,
-      buttons: ['OK']
-    });
-
-    alert.setCssClass('alert-error');
-    alert.present();
-
-    console.log(alert);
+      .catch((err) => 
+      { 
+        console.log(err); 
+      }
+    );    
   }
 
   showAlert(message:string) 
@@ -206,5 +189,16 @@ export class UserlistPage {
     alert.present();
 
     console.log(alert);
+  }
+
+  filterItems(searchTerm) 
+  {
+    return this.pacientes.filter((item) => {
+      return item.display_name.toLowerCase()
+      .indexOf(
+        searchTerm.toLowerCase()) > -1 || 
+          String(item.cedula)
+            .indexOf(searchTerm) > -1; 
+    });
   }
 }

@@ -4,37 +4,41 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="showContent">
 	<ion-grid>
 		<ion-row>
 			<ion-col text-center>
-				<img src="assets/imgs/logo.png" alt="Logotipo Artek Odontología Láser" width="270">
+				<img src="assets/imgs/logo.png" alt="Logotipo Artek Odontología Láser" width="180" class="welcome-logo">
 			</ion-col>
 		</ion-row>
 
 		<ion-list>
 		  <ion-item class="list-item">
-		    <ion-label fixed>Cédula</ion-label>
-		    <ion-input type="number" value="17819782" [(ngModel)]="username"></ion-input>
+		    <ion-label stacked>Cédula</ion-label>
+		    <ion-input type="number" [(ngModel)]="username"></ion-input>
 		  </ion-item>
 		  <ion-item class="list-item">
-		    <ion-label fixed>Password</ion-label>
-		    <ion-input type="password" value="123456789" [(ngModel)]="password"></ion-input>
+		    <ion-label stacked>Password</ion-label>
+		    <ion-input type="password" [(ngModel)]="password"></ion-input>
 		  </ion-item>
 			<br />
 			<button ion-button full (click)="login()">Ingresar</button>
 			<div class="error-message" *ngIf="showLoginErrorMessage">
-				<p>Error: Cédula de usuario o contraseña incorrecto.</p>
-				<p>
-					<a class="lost-password">He olvidado mi contraseña</a>
-				</p>		
+				<p>Error: Cédula de usuario o contraseña incorrecto.</p>		
 			</div>
-			
 		</ion-list>
+
+		<ion-row>
+			<ion-col text-center>
+				<p>
+					<a class="lost-password" (click)="lostPassword()">He olvidado mi contraseña</a>
+				</p>
+			</ion-col>
+		</ion-row>
 		
 		<ion-row>
 			<ion-col text-center>
-				<a class="go-to-signup-page" (click)="goToSignupPage()">Registarme</a>
+				<a class="go-to-signup-page" (click)="goToSignupPage()">Registrarme</a>
 			</ion-col>
 		</ion-row>  
 	</ion-grid>

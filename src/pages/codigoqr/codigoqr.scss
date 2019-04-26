@@ -1,5 +1,12 @@
 page-codigoqr {
 
+  h3 {
+    font-weight: 800 !important;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+  }
+
   .text-information {
     color: color($colors, light);
   }

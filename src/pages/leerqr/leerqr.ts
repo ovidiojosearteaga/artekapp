@@ -32,62 +32,82 @@ export class LeerqrPage {
     public loadingCtrl: LoadingController
     ) 
   {
-    this.loading = this.loadingCtrl.create({
-      content: 'Transfiriendo puntos...'
-    });
   }
 
-  restPoints(userId, points)
+  leerCodigo() 
   {
-    this.loading.present();
+    // Pedir permiso de utilizar la camara
+    this.qrScanner.prepare().then((status: QRScannerStatus) => {
+      if (status.authorized) {
+        // el permiso fue otorgado
+        // iniciar el escaneo
+        let scanSub = this.qrScanner.scan().subscribe((data: string) => {        
 
-    this.restProvider.getWordpressUserData(userId)
-      .then( data => { 
-        this.dataUser = data;
-        var newPoints = parseInt(this.dataUser.user_points) - parseInt(points);
+          if (data.split('.')[0] == 'pay-pack') {
+            let secretariaId = this.userDataProvider.getUserId();
+            let datos = {
+              id_pack : data.split('.')[1],
+              user_id: data.split('.')[4]
+            }
 
-        var dataPoints = {'user_points':newPoints};
+            this.restProvider.payPackUser(secretariaId, datos)
+            .then(data => {
+              console.log(data);
+              this.showMessageSuccess('Listo! ');
+            })
+            .catch(err=> {
+              console.log(err);
+            });
 
-        this.restProvider.updateUserPoints(userId, dataPoints)
-          .then( data => {
-            this.addPoints(userId, points);
-          })
-          .catch(err => {
-            console.log(err);  
-        });
-      })
-      .catch(err => {
-        console.log(err);  
-      });
+          } else {
+            var usersData = {
+              'user_id': data.split('.')[1],
+              'points': data.split('.')[0],
+              'user_id_origin': data.split('.')[3]
+            };
+  
+            this.loading = this.loadingCtrl.create({
+              content: 'Transfiriendo puntos...'
+            });
+            this.loading.present();
+  
+            let userId = this.userDataProvider.getUserId();
+            this.updataPoints(userId, usersData); 
+  
+            this.qrScanner.hide(); // esconder el preview de la camara
+            scanSub.unsubscribe(); // terminar el escaneo
+          }
+          
+        }); 
 
+        this.qrScanner.show();
+
+      } else if (status.denied) {
+        this.showAlert('denied');
+        // el permiso no fue otorgado de forma permanente
+        // debes usar el metodo QRScanner.openSettings() para enviar el usuario a la pagina de configuracion
+        // desde ahí podrán otorgar el permiso de nuevo
+      } else {
+        // el permiso no fue otorgado de forma temporal. Puedes pedir permiso de en cualquier otro momento
+      }
+    }) .catch((e: any) =>this.showAlert('El error es: '+ e));
   }
 
-  addPoints(userIdOrigin, points)
+  updataPoints(userId:number, data:any)
   {
-    var pointsUpdated = parseInt(this.userDataProvider.getUserData().user_points) + parseInt(points);
-    var dataPoints = {
-      'user_points':pointsUpdated, 
-      'user_id_origin':userIdOrigin,
-      'points':points
-    };
+    this.restProvider.updateUserPoints(userId, data)
+      .then( resp => {
+        console.log(resp);
 
-    this.restProvider.updateUserPoints(this.userDataProvider.getUserId(), dataPoints)
-      .then( data => {
         this.loading.dismiss();
-        this.loading = this.loadingCtrl.create({
-          content: 'Transfiriendo puntos...'
-        });
-        this.showMessageSuccess('Puntos transferidos.');
+        this.showMessageSuccess('listo');
       })
-      .catch(err => {
-        console.log(err);  
+      .catch( err => {
+        console.log(err);
       });
-
-    //var data = {'user_points':points}
-    //this.restProvider.updateUserPoints(userId, data)
   }
 
-  showMessageSuccess(message:string) 
+  showMessageSuccess(message:any) 
   {
     const alert = this.alertCtrl.create({
       title: 'Listo!',
@@ -101,14 +121,18 @@ export class LeerqrPage {
     console.log(alert);
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter()
+  {
      this.showCamera();
   }
-  ionViewWillLeave(){
+
+  ionViewWillLeave()
+  {
      this.hideCamera(); 
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() 
+  {
     console.log('ionViewDidLoad LeerqrPage');
   }
 
@@ -126,43 +150,13 @@ export class LeerqrPage {
     console.log(alert);
   }
 
-  showCamera() {
+  showCamera() 
+  {
     (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
   }
 
-  hideCamera() {
+  hideCamera() 
+  {
     (window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
   }
-
-  leerCodigo() {
-
-  // Pedir permiso de utilizar la camara
-  this.qrScanner.prepare().then((status: QRScannerStatus) => {
-    if (status.authorized) {
-      // el permiso fue otorgado
-      // iniciar el escaneo
-      let scanSub = this.qrScanner.scan().subscribe((data: string) => {
-        
-        var userId = data.split('.')[1];
-        var points = data.split('.')[0];
-        this.restPoints(userId, points)
-        
-        this.qrScanner.hide(); // esconder el preview de la camara
-        scanSub.unsubscribe(); // terminar el escaneo
-      }); 
-
-      this.qrScanner.show();
-
-    } else if (status.denied) {
-      this.showAlert('denied');
-      // el permiso no fue otorgado de forma permanente
-      // debes usar el metodo QRScanner.openSettings() para enviar el usuario a la pagina de configuracion
-      // desde ahí podrán otorgar el permiso de nuevo
-    } else {
-      // el permiso no fue otorgado de forma temporal. Puedes pedir permiso de en cualquier otro momento
-    }
-  }) .catch((e: any) =>this.showAlert('El error es: '+ e));
-
-}
-
 }

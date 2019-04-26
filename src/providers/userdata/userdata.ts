@@ -39,12 +39,19 @@ export class UserdataProvider {
     this.oneSignalId = id;
   }
 
+  getCedula():string 
+  {
+    return this.userData.slug;
+  }
+
+  getEmail():string
+  {
+    return this.userData.user_email;
+  }
+
   getName():string 
   {
-    if (this.userData.display_name != '')
-      return this.userData.display_name;
-    
-      return this.userData.name;
+    return this.userData.firstname + ' ' + this.userData.lastname
   }
 
   getToken():string
@@ -107,6 +114,30 @@ export class UserdataProvider {
   setUrlImageUser(urlImageUser:string):void
   {
     this.urlImageUser = urlImageUser;
+  }
+
+  setUserThumbnail(picture:any)
+  {
+    this.userData.userThumbnail = picture;
+  }
+
+  getUserThumbnail()
+  {
+    return this.userData.userThumbnail;
+  }
+
+  updatePoints(points:any, transaction:string)
+  {
+    if (transaction == 'add') {
+      this.userData.user_points = (parseInt(this.userData.user_points) + parseInt(points));
+      return this.userData.user_points;
+
+    } else if (transaction == 'rest') {
+      this.userData.user_points = (parseInt(this.userData.user_points) - parseInt(points));
+      return this.userData.user_points;
+    }
+    
+    return false;
   }
 
 }

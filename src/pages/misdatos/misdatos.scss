@@ -2,9 +2,11 @@ page-misdatos {
   .header {
     img.user-thumbnail {
       width: 80px;
-      border-radius: 50%;
+      border-radius: 3px;
       display: block;
       margin: auto;
+      background: #191919;
+      padding: 3px;
     } 
 
     h3 {

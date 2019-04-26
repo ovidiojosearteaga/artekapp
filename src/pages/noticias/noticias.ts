@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { NoticiaPage } from '../noticia/noticia';
-
+import { HelpersProvider } from '../../providers/helpers/helpers';
 
 /**
  * Generated class for the NoticiasPage page.
@@ -18,7 +18,7 @@ import { NoticiaPage } from '../noticia/noticia';
 })
 export class NoticiasPage {
 
-  showLoading:boolean = true;
+  loading:any;
 
   showNotices:boolean = false;
 
@@ -32,32 +32,40 @@ export class NoticiasPage {
 
   data:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public restProvider: RestProvider,
+    public loadingCtrl:LoadingController,
+    public helpers: HelpersProvider
+  ) {
     this.getWordPressPages();
     this.getWordPressPagesForSlider();
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Cargando noticias...'
+    });
+
+    this.loading.present();
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad NoticiasPage');
   }
 
   getWordPressPagesForSlider()
   {
-    this.restProvider.getWordPressPages(3)
+    this.restProvider.getWordPressPosts(3)
     .then(
       pages => {
         this.noticesSlider = pages;
 
-        console.log(this.noticesSlider);
-
-        /*
         this.noticesSlider.forEach(element => {
           element.featureMediaUrl = "../assets/imgs/loading-image.gif";
         });
-        */
 
         this.noticesSlider.forEach(element => {
-          this.getWordPressMediaByIdForSlider(element.featured_media, element.id);
+          if (element.featured_media > 0)
+            this.getWordPressMediaByIdForSlider(element.featured_media, element.id);
         });        
       }
     ).catch(
@@ -69,27 +77,37 @@ export class NoticiasPage {
 
   getWordPressPages()
   {
-    this.restProvider.getWordPressPages(8)
+    this.restProvider.getWordPressPosts(8)
     .then(
       pages => {
-        this.showLoading = false;
         this.showNotices = true;
         this.notices = pages;
+
+        this.dateFormat(this.notices);
 
         this.notices.forEach(element => {
           element.featureMediaUrl = "../assets/imgs/loading-image.gif";
         });
 
         this.notices.forEach(element => {
-          this.getWordPressMediaById(element.featured_media, element.id);
+          if (element.featured_media > 0)
+            this.getWordPressMediaById(element.featured_media, element.id);
         });
-        
+        this.loading.dismiss();
       }
     ).catch(
       err => {
         console.log(err);
       }
     );
+  }
+
+  dateFormat(notices:any)
+  {
+    notices.forEach(notice => {
+      let fecha:string = notice.date;
+      notice.date_notice = this.helpers.dateFormat(fecha);
+    });
   }
 
   getWordPressMediaById(idMedia:number, idNotice:number)

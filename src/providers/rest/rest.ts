@@ -12,8 +12,8 @@ import { UserdataProvider } from '../../providers/userdata/userdata';
 @Injectable()
 export class RestProvider {
 
-  apiUrl = 'http://localhost/wptesting/wp-json/';  
-	//apiUrl = 'http://paginaswebenbogota.net/artek/wp-json/';	
+  //apiUrl = 'http://localhost:8080/index.php/wp-json/';  
+	apiUrl = 'https://artekapp.com/index.php/wp-json/';	
 
   constructor(
     public http: HttpClient,
@@ -47,7 +47,7 @@ export class RestProvider {
   getWordpressUserData(userId:number)
   {
 
-    console.log(this.userDataProvider.getToken());
+    //console.log(this.userDataProvider.getToken());
 
     return new Promise(resolve => {
       this.http.get(
@@ -67,6 +67,21 @@ export class RestProvider {
     return new Promise(resolve => {
       this.http.get(
         this.apiUrl+'artek/v1/citas/?user_id='+userId,
+        {
+          headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
+        }).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      })
+    });
+  }
+
+  getContactosData()
+  {
+    return new Promise(resolve => {
+      this.http.get(
+        this.apiUrl+'artek/v1/contactos/',
         {
           headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
         }).subscribe(data => {
@@ -117,6 +132,16 @@ export class RestProvider {
     });
   }
 
+  getWordPressUniquePost(id:number) {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl+'wp/v2/posts/'+id).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
   getWordPressPages(numberOfPages:number) {
     return new Promise(resolve => {
       this.http.get(this.apiUrl+'wp/v2/pages/?per_page='+numberOfPages).subscribe(data => {
@@ -149,12 +174,70 @@ export class RestProvider {
     });
   }
 
+  /*
   updateUserPoints(userId, data) {
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+'wp/v2/users/'+userId, data, 
       {
         headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
       }).
+      subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      });
+    });
+  }
+  */
+
+  updateUserPoints(userId:number, data:any) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'artek/v1/update-points/'+userId, data, {
+        headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
+      })
+        .subscribe( res => {
+          resolve(res);
+        }, err => {
+          resolve(err);
+        });
+    });
+  }
+
+  updateUserData(userId, data) {
+    console.log(data);
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'wp/v2/users/'+userId, data, 
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
+      }).
+      subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      });
+    });
+  }
+
+  updateUserThumbnail(userId, picture) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'wp/v2/users/'+userId, {'userThumbnail':picture}, 
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
+      }).
+      subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      });
+    });
+  }
+
+  recoverUserPassword(userCedula) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        this.apiUrl+'wp/v2/users/recoverpass', 
+        {'username':userCedula}
+      ).
       subscribe(res => {
         resolve(res);
       }, err => {
@@ -197,6 +280,21 @@ export class RestProvider {
         console.log(err);
       })
     }); 
+  }
+
+  payPackUser(secretariaId:number, data:any)
+  {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+'artek/v1/pay-pack/'+secretariaId, data, 
+      {
+        headers: new HttpHeaders().set('Authorization', 'Bearer '+this.userDataProvider.getToken()),
+      }).
+      subscribe(res => {
+        resolve(res);
+      }, err => {
+        resolve(err);
+      });
+    });
   }
 
 }

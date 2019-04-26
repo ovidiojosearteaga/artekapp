@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { WelcomePage } from '../welcome/welcome';
-
+import { HelpersValidatorProvider } from '../../providers/helpers-validator/helpers-validator';
 
 /**
  * Generated class for the SignupPage page.
@@ -21,10 +21,13 @@ export class SignupPage {
   firstName:string = '';
   lastName:string = '';
   username:string = '';
+  birthdate:string='';
   email:string = '';
   password:string = '';
+  rePassword:string = '';
   loading:any;
   userData:any;
+  maxDateTime:string;
 
   constructor(
     public navCtrl: NavController, 
@@ -32,11 +35,24 @@ export class SignupPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,     
     public restProvider: RestProvider,
+    public helpersValidator: HelpersValidatorProvider,
     ) 
   {
     this.loading = this.loadingCtrl.create({
       content: 'Registrando usuario...'
     });
+
+    let dateTime = new Date();
+    let year:any = dateTime.getFullYear() - 18;
+
+    let month:any = dateTime.getMonth() + 1;
+    month = month > 10 ? month : '0'+month;
+
+    let day:any = dateTime.getDate();
+    day = day > 10 ? day : '0'+day;
+
+    this.maxDateTime = year+'-'+month+'-'+day;
+
   }
 
   ionViewDidLoad() {
@@ -51,6 +67,7 @@ export class SignupPage {
       'password': this.password,
       'first_name': this.firstName,
       'last_name': this.lastName,
+      'fecha_nacimiento': this.birthdate
     }
 
     this.restProvider.registerUserWordPress(data)
@@ -83,22 +100,28 @@ export class SignupPage {
     if ( this.firstName === '' || 
          this.lastName === '' || 
          this.username === '' || 
+         this.birthdate === '' ||
          this.email === '' || 
-         this.password === '' ) {
+         this.password === '' ||
+         this.rePassword === '' ) {
 
       this.showAlert('Todos los campos son obligatorios.');
 
-    } else if (this.hasWhitespace(this.username) ) { 
+    } else if (this.helpersValidator.hasWhitespace(this.username) ) { 
 
-      this.showAlert('El nombre de usuario no puede contener espacios en blanco.');
+      this.showAlert('La cedula de usuario no puede contener espacios en blanco.');
 
-    } else if (this.validateEmail(this.email) != true){
+    } else if (this.helpersValidator.validateEmail(this.email) != true){
 
       this.showAlert('Introduce un email correcto.');
 
-    } else if ( this.password.length < 8 || this.hasWhitespace(this.password)) {
+    } else if ( this.password.length < 8 || this.helpersValidator.hasWhitespace(this.password)) {
 
       this.showAlert('El password debe tener 8 caracteres o mas y no puede contener espacios en blanco.');
+
+    } else if (this.rePassword !== this.password) {
+
+      this.showAlert('Los passwords no coinciden.');
 
     } else {
 
@@ -147,18 +170,6 @@ export class SignupPage {
     alert.present();
 
     console.log(alert);
-  }
-
-  validateEmail(mail) 
-  {
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-    {
-      return (true)
-    }
-  }
-
-  hasWhitespace( str ) {
-    return str.search(" ") != -1;
   }
 
 }

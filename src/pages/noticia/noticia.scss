@@ -1,4 +1,12 @@
 page-noticia {
+
+  .feature-media-url {
+    img {
+      display: block;
+      margin: auto;
+    }
+  }
+
   .title-notice {
     color: white;
   }
@@ -10,6 +18,11 @@ page-noticia {
 
     a {
       color: color($colors, primary)
-    }
+    } 
+  }
+
+  .date-extra {
+    font-size: 1em;
+    color: white;
   }
 }

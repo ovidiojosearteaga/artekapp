@@ -2,9 +2,11 @@ page-puntos {
   div.header {
     img.user-thumbnail {
       width: 80px;
-      border-radius: 50%;
+      border-radius: 3px;
       display: block;
       margin: auto;
+      background: #272727;
+      padding: 3px;
     } 
 
     h3 {
@@ -29,7 +31,6 @@ page-puntos {
       display: block;
       position: relative;
       top: 15px;
-      opacity: .3;
     }
 
     h2.title-paquete {
@@ -37,6 +38,7 @@ page-puntos {
       z-index: 5;
       top: 10px;
       width: 100%;
+      text-shadow: 2px 2px 2px rgba(0,0,0,1);
     }
 
     p.description-paquete {

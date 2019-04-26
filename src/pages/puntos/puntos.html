@@ -3,13 +3,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Puntos</ion-title>
+    <ion-title>Mis puntos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content margin-top padding *ngIf="showPage">
   <div class="header" >
-    <img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >
+    <img [src]="userThumbnail" *ngIf="userThumbnail" class="user-thumbnail" (click)="goToMisDatos()">
+    <img [src]="defaultThumbnail" *ngIf="! userThumbnail"class="user-thumbnail" (click)="goToMisDatos()">
     <h3>{{userDataProvider.getName()}}</h3>
     <p class="is-client">{{userDataProvider.getStatus()}} Artek</p>
   </div>
@@ -25,21 +26,24 @@
   <div class="mis-puntos">
     <p>Mis puntos <span class="puntos">{{userDataProvider.getUserData().user_points}}</span></p>
   </div>
-
+ 
     <ion-list no-lines>
+      <!--
       <ion-item (click)="leerPuntosQr()">
         <ion-icon name="logo-buffer" item-start></ion-icon>
         <h2>Obtener Puntos QR</h2>
         <p>Leer</p>
-      <ion-icon name="arrow-dropright" item-end></ion-icon>
-    </ion-item>
-
+        <ion-icon name="arrow-dropright" item-end></ion-icon>
+      </ion-item>
+      -->
+      <!--
       <ion-item margin-top (click)="showPrompt()">
         <ion-icon name="logo-buffer" item-start></ion-icon>
         <h2>Generar codigo QR</h2>
         <p>Acceder</p>
-      <ion-icon name="arrow-dropright" item-end></ion-icon>
-    </ion-item>
+        <ion-icon name="arrow-dropright" item-end></ion-icon>
+      </ion-item>
+      -->
 
     <ion-item margin-top (click)="goToUserList()">
       <ion-icon name="swap" item-start></ion-icon>

@@ -137,12 +137,22 @@ export class PaquetePage {
         {
           text: 'Aceptar',
           handler: () => {
-            this.actualizarPuntos();
+            //this.actualizarPuntos();
+            this.createQrPayPoints();
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  createQrPayPoints()
+  {
+    this.navCtrl.push(PaqueteqrPage, {
+      'namePaquete':this.paqueteData.slug,
+      'idPaquete':this.paqueteData.id,
+      'valuePaquete':this.paqueteData.value_points
+    });
   }
 
   actualizarPuntos()

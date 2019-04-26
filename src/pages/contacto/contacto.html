@@ -3,10 +3,43 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Contacto</ion-title>
+    <ion-title>Contactos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <img src="assets/imgs/logo.png" alt="Logotipo Artek Odontología Láser" width="180">
+      </ion-col>
+    </ion-row>
 
+    <ion-row *ngFor="let contacto of contactosData" class="sede">
+      <ion-col>
+        <p>
+          <ion-icon name="checkmark-circle" class="city"></ion-icon>
+          <strong>Ciudad:</strong>
+          <span>{{contacto.sede}}</span>
+        </p>
+        <p>
+          <ion-icon name="map" class="direction"></ion-icon>
+          <strong>Dirección:</strong>
+          <span>
+            <a href="https://www.google.com/maps/search/?api=1&query={{contacto.directionCode}}">{{contacto.direccion}}</a>
+          </span>
+        </p>
+        <p>
+          <ion-icon name="call" class="phone"></ion-icon>
+          <strong>Teléfono:</strong>
+          <span><a href="tel:{{contacto.telefono}}">{{contacto.telefono}}</a></span>
+        </p>
+        <p>
+          <ion-icon name="logo-whatsapp" class="whatsapp"></ion-icon>
+          <strong>Whatsapp:</strong>
+          <span><a href="https://wa.me/{{contacto.whatsapp}}?text=Hola,%20quisiera%20obtener%20información%20sobre...%20">+{{contacto.whatsapp}}</a></span>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid  >
 </ion-content>

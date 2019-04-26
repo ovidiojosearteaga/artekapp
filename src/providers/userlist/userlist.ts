@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RestProvider } from '../../providers/rest/rest';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,10 +12,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserlistProvider {
 
-  pacientes:any;
-  data:any;
-  letterList:any;
-  listPacientes:any = [];
+  //pacientes:any;
+  //data:any;
+  ///letterList:any;
+  //listPacientes:any = [];
 
   constructor(
     public http: HttpClient,
@@ -25,6 +24,7 @@ export class UserlistProvider {
     console.log('Hello UserlistProvider Provider');
   }
 
+  /*
   getPacientes()
   {
     this.restProvider.getPacientes()
@@ -47,7 +47,9 @@ export class UserlistProvider {
           console.log(err);  
       });
   }
+  */
 
+    /*
   pacientesWhitOutDivisors()
   {
     this.listPacientes = [];
@@ -66,4 +68,5 @@ export class UserlistProvider {
     });
   }
 
+    */
 }

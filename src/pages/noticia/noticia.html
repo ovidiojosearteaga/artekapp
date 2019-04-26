@@ -4,15 +4,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card *ngIf="showNotice">
+<ion-content>
+  <div class="feature-media-url" *ngIf="showNotice">
     <img src="{{notice.featureMediaUrl}}"/>
-    <ion-card-content>
-      <ion-card-title class="title-notice">
-        {{notice.title.rendered}}
-      </ion-card-title>
-      <div class="content-notice" [innerHTML]="notice.content.rendered">
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <p class="date-extra">Públicado: {{notice.date_notice}}</p>
+        <p class="date-extra">Por: {{notice.author_name}}</p>
+        <ion-card-title class="title-notice">
+          {{notice.title.rendered}}
+        </ion-card-title>
+        <div class="content-notice" [innerHTML]="notice.content.rendered">
+        </div>
+        <p class="date-extra" margin-top>
+            Categorías: <span *ngFor="let categorie of notice.categories_term">{{categorie}} </span>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

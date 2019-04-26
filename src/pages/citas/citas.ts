@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { UserdataProvider } from '../../providers/userdata/userdata';
 import { RestProvider } from '../../providers/rest/rest';
+import { HelpersProvider } from '../../providers/helpers/helpers';
 
 /**
  * Generated class for the CitasPage page.
@@ -23,20 +24,43 @@ export class CitasPage {
 
   loading: any;
 
+  dateToday:string;
+
+  dateTomorrow:string;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public userDataProvider: UserdataProvider,
     public alertCtrl: AlertController,
     public restProvider: RestProvider,
-    public loadingCtrl: LoadingController) 
+    public loadingCtrl: LoadingController,
+    public helpers: HelpersProvider) 
   {
+    this.loading = this.loadingCtrl.create({
+      content: 'Cargando citas...'
+    });
+
+    this.loading.present();
+
+    var data = new Date();
+    var monthT = data.getMonth()+1 < 10 ? '0'+(data.getMonth()+1) : (data.getMonth()+1);
+    var dayT = data.getDate() < 10 ? '0'+(data.getDate()) : (data.getDate());
+    this.dateToday = data.getFullYear()+'-'+monthT +'-'+dayT;
+
+    console.log(this.dateToday);
+
+    var date = new Date();
+    date.setDate(date.getDate()+1);
+    var month = date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1);
+    var day = date.getDate() < 10 ? '0'+(date.getDate()) : (date.getDate());
+    this.dateTomorrow = date.getFullYear()+'-'+month +'-'+day;
+
+    console.log(this.dateTomorrow);
+
+    console.log(this.dateToday);
     this.showPage = this.userDataProvider.getUserDataReay();
     this.getCitas(this.userDataProvider.getUserId());
-
-    this.loading = this.loadingCtrl.create({
-      content: 'Procesando...'
-    });
   }
 
   ionViewDidLoad() {
@@ -48,10 +72,23 @@ export class CitasPage {
     this.restProvider.getCitasData(userId)
       .then( data => {
         this.citas = data;
+        console.log(this.citas);
+        //this.citas.reverse();
+        this.dateFormat(this.citas);
+        this.loading.dismiss();
       })
       .catch( err => {
          console.log(err);
       });
+  }
+
+  dateFormat(citas:any)
+  {
+    citas.forEach(cita => {
+      let fecha:string = cita.fecha;
+      
+      cita.dateFormated = this.helpers.dateFormat(fecha);
+    });
   }
 
   confirmarCita(cita)
@@ -66,8 +103,11 @@ export class CitasPage {
         {
           text: 'Sí',
           handler: () => {
+            this.loading = this.loadingCtrl.create({
+              content: 'Actualizando cita...'
+            });
             this.loading.present();
-            this.updateEstadoCitaConfirmada(cita.id, 'confirmada')
+            this.updateEstadoCitaConfirmada(cita, true)
           }
         }
       ]
@@ -75,25 +115,26 @@ export class CitasPage {
     confirm.present();
   }
 
-  cancelarCita(cita)
+  updateEstadoCitaConfirmada(cita, estado)
   {
-    const confirm = this.alertCtrl.create({
-      title: 'Cancelar',
-      message: '¿Deseas cancelar esta cita? <p>'+cita.title+'</p><p>'+cita.fecha+' - '+cita.hora  +'</p>',
-      buttons: [
-        {
-          text: 'No'
-        },
-        {
-          text: 'Sí',
-          handler: () => {
-            this.loading.present();
-            this.updateEstadoCitaCancelada(cita.id, 'cancelada')
-          }
-        }
-      ]
-    });
-    confirm.present();
+    console.log(cita);
+    this.restProvider.updateEstadoCita(cita.id, estado)
+      .then( data => {
+        //cita = data;
+        cita.estado = 'true';
+        
+        this.loading.dismiss();
+        
+        this.loading = this.loadingCtrl.create({
+          content: 'Procesando...'
+        });
+
+        this.showAlert('Tu cita ha sido confirmada.');
+        
+      })
+      .catch( err => {
+        console.log(err);
+      });
   }
 
   reprogramarCita(cita)
@@ -108,8 +149,11 @@ export class CitasPage {
         {
           text: 'Sí',
           handler: () => {
+            this.loading = this.loadingCtrl.create({
+              content: 'Actualizando cita...'
+            });
             this.loading.present();
-            this.updateEstadoCitaReprogramada(cita.id, 'reprogramada')
+            this.updateEstadoCitaReprogramada(cita, 'REPROGRAMADA')
           }
         }
       ]
@@ -117,17 +161,12 @@ export class CitasPage {
     confirm.present();
   }
 
-  updateEstadoCitaReprogramada(citaId, estado)
+  updateEstadoCitaReprogramada(cita, estado)
   {
     var cita:any;
-    this.restProvider.updateEstadoCita(citaId, estado)
+    this.restProvider.updateEstadoCita(cita.id, estado)
       .then( data => {
-        cita = data;
-
-        this.citas.forEach(function(element){
-          if (element.id == cita.ID)
-            element.estado = cita.estado; 
-        });
+        cita.estado = 'REPROGRAMADA';
         this.loading.dismiss();
 
         this.loading = this.loadingCtrl.create({
@@ -135,56 +174,6 @@ export class CitasPage {
         });
 
         this.showAlert('Se ha enviado tu solicitud de reprogramar esta cita.');
-
-      })
-      .catch( err => {
-        console.log(err);
-      });
-  }
-
-  updateEstadoCitaCancelada(citaId, estado)
-  {
-    var cita:any;
-    this.restProvider.updateEstadoCita(citaId, estado)
-      .then( data => {
-        cita = data;
-
-        this.citas.forEach(function(element){
-          if (element.id == cita.ID)
-            element.estado = cita.estado; 
-        });
-        this.loading.dismiss();
-
-        this.loading = this.loadingCtrl.create({
-          content: 'Procesando...'
-        });
-
-        this.showAlert('Tu cita ha sido cancelada.');
-
-      })
-      .catch( err => {
-        console.log(err);
-      });
-  }
-
-  updateEstadoCitaConfirmada(citaId, estado)
-  {
-    var cita:any;
-    this.restProvider.updateEstadoCita(citaId, estado)
-      .then( data => {
-        cita = data;
-
-        this.citas.forEach(function(element){
-          if (element.id == cita.ID)
-            element.estado = cita.estado; 
-        });
-        this.loading.dismiss();
-
-        this.loading = this.loadingCtrl.create({
-          content: 'Procesando...'
-        });
-
-        this.showAlert('Tu cita ha sido confirmada.');
 
       })
       .catch( err => {

@@ -1,3 +1,32 @@
 page-contacto {
+  .sede {
+    border-bottom: 1px solid #2f2f2f;
 
+    strong {
+      text-transform: uppercase;
+      margin-right: 7px;
+    }
+
+    p {
+      a {
+        color: #c52d28;
+      }
+    }
+
+    .city {
+      color: #c14242;
+    }
+
+    .direction {
+      color: #b3b3b3;
+    }
+
+    .phone {
+      color: #2196F3;
+    }
+
+    .whatsapp {
+      color: #348037;
+    }
+  }
 }

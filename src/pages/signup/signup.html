@@ -16,28 +16,44 @@
       <ion-col>
           <ion-list>
               <ion-item margin-bottom class="list-item">
-                <ion-label fixed>Nombre</ion-label>
+                <ion-label stacked>Nombre</ion-label>
                 <ion-input type="text" [(ngModel)]="firstName"></ion-input>
               </ion-item>
             
               <ion-item margin-bottom class="list-item">
-                <ion-label fixed>Apellido</ion-label>
+                <ion-label stacked>Apellido</ion-label>
                 <ion-input type="text" [(ngModel)]="lastName"></ion-input>
               </ion-item>
           
               <ion-item margin-bottom class="list-item">
-                <ion-label fixed>Cédula</ion-label>
+                <ion-label stacked>Cédula</ion-label>
                 <ion-input type="text" [(ngModel)]="username"></ion-input>
+              </ion-item>
+
+              <ion-item margin-bottom class="list-item">
+                <ion-label stacked>Fecha de nacimiento</ion-label>
+                <ion-datetime 
+                  display-format="DD-MMM-YYYY HH:mm"
+                  monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Oct, Sep, Nov, Dic"
+                  max="{{maxDateTime}}"
+                  [(ngModel)]="birthdate"
+                >
+                </ion-datetime>
               </ion-item>
           
               <ion-item margin-bottom class="list-item">
-                <ion-label fixed>Email</ion-label>
+                <ion-label stacked>Email</ion-label>
                 <ion-input type="email" [(ngModel)]="email"></ion-input>
               </ion-item>
               
               <ion-item margin-bottom class="list-item">
-                <ion-label fixed>Password</ion-label>
+                <ion-label stacked>Password</ion-label>
                 <ion-input type="password" [(ngModel)]="password"></ion-input>
+              </ion-item>
+
+              <ion-item margin-bottom class="list-item">
+                <ion-label stacked>Repetir password</ion-label>
+                <ion-input type="password" [(ngModel)]="rePassword"></ion-input>
               </ion-item>
           
               <button ion-button full margin-top (click)="signUp()">Registarme</button>

@@ -11,7 +11,7 @@
   <ion-grid>
     <ion-row>
       <ion-col class="header">
-          <img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >
+          <!--<img src="{{userDataProvider.getUrlImageUser()}}" class="user-thumbnail" >-->
           <h3>{{userDataProvider.getName()}}</h3>
           <p class="is-client">{{userDataProvider.getStatus()}} Artek</p>
       </ion-col>   
@@ -32,11 +32,11 @@
                 </p>
               </ion-col>
               <ion-col col-12>
-                <p class="cite-date">{{cita.fecha}} - <span class="cite-hour">{{cita.hora}}</span></p>
+                <p class="cite-date">{{cita.dateFormated}} . <span class="cite-hour">{{cita.hora}}</span></p>
               </ion-col>
             </ion-row>
 
-            <ion-row *ngIf="cita.estado == 'confirmada'">
+            <ion-row *ngIf="cita.estado == 'CONFIRMADA' || cita.estado == 'true'">
               <ion-col>
                 <p class="text-estado">
                   <ion-icon name="checkmark-circle" class="icon-estado"></ion-icon>
@@ -45,7 +45,7 @@
               </ion-col>
             </ion-row>
 
-            <ion-row *ngIf="cita.estado == 'reprogramada'">
+            <ion-row *ngIf="cita.estado == 'REPROGRAMADA'">
               <ion-col>
                 <p class="text-estado-reprogramada">
                   <ion-icon name="alarm" class="icon-estado-reprogramada"></ion-icon>
@@ -53,7 +53,8 @@
                 </p>
               </ion-col>
             </ion-row>
-
+            
+            <!--
             <ion-row *ngIf="cita.estado == 'cancelada'">
               <ion-col>
                 <p class="text-estado-cancelada">
@@ -62,26 +63,28 @@
                 </p>
               </ion-col>
             </ion-row>
-
-            <ion-row *ngIf="cita.estado == 'por-confirmar'">
-              <ion-col col-12 col-sm-4>
+            -->
+            <ion-row *ngIf="cita.estado == null && (cita.fecha == dateTomorrow)">
+              <ion-col col-12 col-sm-6>
                 <button ion-button block (click)="confirmarCita(cita)">
                     <ion-icon name="checkmark-circle"></ion-icon>
                     <span class="status-action-text">Confirmar</span>
                 </button>
               </ion-col>
-              <ion-col col-12 col-sm-4>
+              <ion-col col-12 col-sm-6>
                 <button ion-button block (click)="reprogramarCita(cita)">
                     <ion-icon name="alarm"></ion-icon>
                     <span class="status-action-text">Reprogramar</span>
                 </button>
               </ion-col>
+              <!--
               <ion-col col-12 col-sm-4>
                 <button ion-button block (click)="cancelarCita(cita)">
                     <ion-icon name="close-circle"></ion-icon>
                   <span class="status-action-text">Cancelar</span>
                 </button>
               </ion-col>
+              -->
             </ion-row>
           </ion-grid>
         </ion-card>
